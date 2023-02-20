@@ -1,6 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 html, body{
 	font-family: 'Fira Sans', sans-serif;
@@ -10,95 +11,91 @@ img{
 	display: block;
 }
 header.menu1{
-	width: 100%;
-	height: 100px;
+	width: 100vw;
+	height: 55px;
 	position: fixed;
-	left: 0;
-	top: calc(50vh - 50px);
 	z-index: 3;
-	padding: 0 100px;
+	padding: 0 5%;
 	background-color: rgba(200, 15, 46, .8);
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 }
 header.menu1 img{
-	width: 50px;
+	margin: -15px;
+	width: 45px;
 }
-nav{
+header.menu1 nav{
+	margin-left: 5%;
+	width: 300px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100px;
 }
 nav ul{
+	width: 100%;
 	list-style: none;
 	display:flex;
+	justify-content: space-between;
 }
+
 nav a{
 	text-decoration: none;
 	color: rgba(29, 66, 137, .7);
 	transition: all .3s;
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: 700;
-	margin: 0 10px;
-	padding: 10px 20px;
-	position: relative;
+	margin: 5%;
+}
 
-}
-nav a:hover{
-	color: white
-}
-nav a::before, nav a::after{
-	position: absolute;
-	opacity: 0;
-	color: white;
-	font-size: 1.5em;
-	top: 4px;
-	transition: all .3s;
-}
-nav a:hover::before, nav a:hover::after{
-	opacity: 1;
-	transform: translateX(0px);
-}
-nav a::before{
-	content:"(";
-	left: 0;
-	transform: translateX(-10px);
-}
-nav a::after{
-	content:")";
-	right: 0;
-	transform: translateX(10px);
-}
+
+
 section {
-	width: 100%;
-	height: 100vh;
-	padding: 0 100px;
-	display: grid;
-	grid-template: repeat(2 1fr) / 100%;
-	row-gap: 100px;
-	align-items: center;
-	position: absolute;
-	background-color: white;
-}
-#uno::before{
-	content: "";
 	height: 100vh;
 	width: 100vw;
 	position: absolute;
+	background-color: white;
+	padding: 70px 5% 35px;
+	overflow: hidden;
+}
+h1{
+	font-size: 2.5em;
+	font-weight: 900;
+	color: #C80F2E;
+}
+h2{
+	font-size: 1.5em;
+	font-weight: 700;
+	color: #1D4289;
+}
+p{
+	font-size: .9em;
+	line-height: 1em;
+	margin-top: 10px;
+	color: #444;
+}
+#uno::after{
+	content: "";
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	left: 0;
 	background: url("../img/fondo-01.jpg") no-repeat top center / cover;
 	opacity: .2;
 	z-index: -1;
 }
 #uno img{
 	width: 30vw;
+	margin-bottom: 15px;
 }
-#dos::before{
+#dos::after{
 	content: "";
 	height: 100vh;
 	width: 100vw;
-	position: absolute;
+	position: fixed;
+	top: 0;
+	left: 0;
 	background: url("../img/fondo-02.jpg") no-repeat center center / cover;
 	opacity: .2;
 	z-index: -1;
@@ -106,37 +103,39 @@ section {
 #dos img{
 	width: 40%;
 	margin: 20px 0;
-	padding: 10px;
+	padding: 5px;
 	background-color: white;
 	box-shadow: 1px 1px 5px black;
 }
-#tres::before{
+#tres::after{
 	content: "";
 	height: 100vh;
 	width: 100vw;
-	position: absolute;
+	position: fixed;
+	top: 0;
+	left: 0;
 	background: url("../img/fondo-03.jpg") no-repeat center center / cover;
 	opacity: .2;
 	z-index: -1;
 }
 #tres div:last-child{
 	display: grid;
-	grid-template: auto 40vh / repeat(3, 200px);
-	height: 40vh;
-	gap: 5px;
+	grid-template: auto 20px / repeat(3, 1fr);
+	column-gap: 5%;
+	margin-top:20px;
 	align-content: center;
 }
-#tres img{
-	border: 3px dashed #C80F2E;
-	padding: 10px;
-	max-width: 100%;
-	max-height: 100%;
+#tres div:last-child img{
+	border: 2px dashed #C80F2E;
+	padding: 5px;
+	max-width: 120%;
+	max-height: 120%;
 	object-fit: cover;
 	filter: grayscale(100%);
 	transition: all .5s;
 }
 #tres div:last-child p{
-	font-size: 1.3em;
+	font-size: 1em;
 	color: #1D4289;
 	font-weight: 700;
 	margin-top: 5px;
@@ -144,69 +143,88 @@ section {
 #tres div:last-child a:hover img{
 	filter: grayscale(0);
 }
+.info{
+	width: 90%;
+	max-width: 1000px;
+}
+.info a{
+	width: 90%;
+	font-weight: 700;
+	color: #1D4289;
+	text-decoration: none;
+}
+.info a:hover{
+	color: #C80F2E;
+}
+#uno:target, #dos:target, #tres:target {
+	z-index: 1;
+}
+
+
+/*EFECTO DE ENLACES*/
+.brackets:hover{
+	color: white
+}
+.brackets::before, .brackets::after{
+	position: absolute;
+	opacity: 0;
+	color: white;
+	font-size: 1.5em;
+	top: 4px;
+	transition: all .3s;
+}
+.brackets::before{
+	content:"(";
+	left: 0;
+	transform: translateX(20px);
+}
+.brackets::after{
+	content:")";
+	right: 0;
+	transform: translateX(-20px);
+}
+.brackets:hover::before, nav a:hover::after{
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+
+/*PAGINAS SECUNDARIAS*/
 #bird{
-	display: grid;
+	overflow: scroll;
+	height: 100%;
+	padding
+	-display: grid;
 	grid-template: 75px auto / repeat(2, 1fr);
 	align-items: start;
 	align-content: center;
 	gap: 40px;
-	z-index: -1;
 }
-#bird::before{
+#bird::after{
 	content: "";
 	height: 100vh;
 	width: 100vw;
 	position: absolute;
-	background: url("../img/bird-02.jpg") no-repeat right top / cover;
+	background: url("img/bird-02.jpg") no-repeat center top / cover;
 	opacity: .2;
-	z-index: -2;
+	z-index: -1;
 }
 #bird h1{
-	grid-column: span 2;
+	-width: 100%;
 }
 #bird img{
-	padding: 10px;
+	height:;
+	width: 100%;
+	margin-top: 10px;
+	padding: 5px;
 	border: 1px dashed #C80F2E;
 }
 #bird.info{
 	width: 100%;
 }
-.info{
-	width: 80%;
-	max-width: 1000px;
-}
-.info a{
-	width: 220px;
-	font-weight: 700;
-	text-decoration: none;
-	color: #1D4289;
-	font-weight: 700;
-}
-.info a:hover{
-	color: #C80F2E;
-}
-h1{
-	font-size: 3.5em;
-	font-weight: 900;
-	color: #C80F2E;
-}
-h2{
-	font-weight: 700;
-	font-size: 2em;
-	color: #1D4289;
-}
-p{
-	color: #444;
-	line-height: 1.5em;
-	margin-top: 10px;
-}
-#uno:target, #dos:target, #tres:target {
-	z-index: 2;
-}
 
 
-
-
+/*MENU HAMBURGUESA*/
 header.menu2{
 	position: fixed;
 	z-index: 1;
@@ -223,8 +241,8 @@ header.menu2{
 	padding: 5px 5px 0;
 	cursor: pointer;
 	position: absolute;
-	top: 100px;
-	left: 100px;
+	top: 12.5px;
+	left: 5%;
 	transition: all .5s;
 }
 .abrir:hover{
@@ -240,7 +258,10 @@ header.menu2{
 	background-color: white;
 }
 .hamb{
-	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
 	height: 100vh;
 	position: absolute;
 	background-color: #1D4289;
@@ -258,12 +279,10 @@ header.menu2{
 .hamb a{
 	color: rgba(255, 255, 255, .7);
 	font-size: 3em;
-	padding: 17px 40px;
 }
 .cerrar{
-	display: none;
-}
-.cerrar{
+	height: 28px;
+	width: 30px;
 	display: block;
 	appearance: none;
 	-webkit-appearance: none;
@@ -272,22 +291,22 @@ header.menu2{
 	color: rgba(255, 255, 255, .7);
 	font-size: 2em;
 	position: absolute;
-	top: 20px;
-	right: 20px;
+	top: 6.5px;
+	left: 5%;
 	cursor: pointer;
+	transition: all .5s;
 }
 .cerrar:hover{
 	color: white;
 }
 .desplegado{
-	left: 0;
 	display: flex;
 }
 .blur{
 	filter: blur(4px);
 }
 
-
+/*
 @media screen and (max-width: 900px){
 	#tres div:last-child{
 		display: grid;
@@ -295,22 +314,24 @@ header.menu2{
 		height: 40vh;
 		column-gap: 40px;
 		align-content: center;
-		align-items: flex-start;
+		align-items: start;
 	}
 	#tres div:last-child img{
-		max-width: 80%;
-		max-height: 80%;
+		width: 80%;
+		height: 80%;
 	}
 	#tres div:last-child p{
 		font-size: 1.2em;
 	}
 }
 
-@media screen and (max-width: 1200px){
+-@media screen and (max-width: 1200px){
 	#bird{
 	display: block;
 	height: 100%;
-	padding: 200px 0;
+	padding-top: 200px;
+	padding-left: 0;
+	padding-bottom: 40px;
 	position: static;
 	background-color: transparent;
 	}
@@ -319,7 +340,7 @@ header.menu2{
 	top: 0;
 	left: 0;
 	}
-	#bird *:not(p,a){
+	#bird *:not(p, a){
 		margin-left: 100px;
 	}
 	#bird.info{
@@ -329,7 +350,7 @@ header.menu2{
 	#bird img{
 		margin-top: 40px;
 		width: 60%;
-		max-width: 550px;
+		max-wwidth: 550px;
 		margin-bottom: 40px;
 	}
 	.abrir{
@@ -357,48 +378,6 @@ header.menu2{
 
 
 
-
-@media screen and (max-width:770px){
-	h1{
-		font-size: 4em;
-	}
-	h2{
-		font-size: 2.5em;
-	}
-	.info p{
-		width: 70%;
-	}
-}
-@media screen and (max-width:620px){
-	h1{
-		font-size: 3em;
-	}
-	h2{
-		font-size: 1.8em;
-	}
-	.info p{
-		font-size: .9em;
-		width: 70%;
-	}
-}
-@media screen and (max-width:460px){
-	h1{
-		font-size: 2em;
-	}
-	.info{
-		margin-bottom: 40px;
-	}
-	.info p{
-		font-size: .9em;
-		width: 80%;
-	}
-	nav{
-		display: none;
-	}
-	section{
-		justify-content: center;
-	}
-}
 
 
 
